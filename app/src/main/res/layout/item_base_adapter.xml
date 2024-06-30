@@ -8,6 +8,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="@string/app_name"
+        android:id="@+id/tvrollno"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/app_name"
         android:id="@+id/tvName"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/tv"/>
 
 </LinearLayout>

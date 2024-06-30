@@ -12,8 +12,9 @@ import com.lemien.applicationbaseadapter.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     var binding: ActivityMainBinding? = null
-    var array = arrayListOf("Finny", "Clifford", "Daniel",)
-    var baseAdapterClass = BaseAdapterClass(array)
+    var list = arrayListOf("Physics", "Maths", "Java",)
+    var studentList = arrayListOf<Student>()
+    var baseAdapterClass = BaseAdapterClass(studentList)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -25,34 +26,41 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        studentList.add(Student(rollNo = 1, "Elphine", "Physics"))
+        studentList.add(Student(rollNo = 2, "Clifford", "Maths"))
+        studentList.add(Student(rollNo = 3, "Daniel", "Java"))
         binding?.listview?.adapter = baseAdapterClass
-        binding?.fab?.setOnClickListener{
+
+
+        binding?.listview?.adapter = baseAdapterClass
+        binding?.fab?.setOnClickListener {
             var dialog = Dialog(this)
             dialog.setContentView(R.layout.custom_dialog)
             dialog.show()
 
             var etName = dialog.findViewById<EditText>(R.id.etName)
             var addbtn = dialog.findViewById<Button>(R.id.addbtn)
-            addbtn?.setOnClickListener{
-                if(etName?.text?.toString().isNullOrEmpty())
-                {
+            addbtn?.setOnClickListener {
+                if (etName?.text?.toString().isNullOrEmpty()) {
                     etName?.error = "enter name"
-                }
-                else
-                {
-                    array.add(etName.text.toString())
+                } else {
+                    list.add(etName.text.toString())
                     dialog.dismiss()
                     baseAdapterClass.notifyDataSetChanged()
                 }
             }
         }
         binding?.listview?.setOnItemClickListener { adapterView, view, i, l ->
-            array.removeAt(i)
+            list.removeAt(i)
             baseAdapterClass.notifyDataSetChanged()
         }
         binding?.listview?.setOnItemLongClickListener { adapterView, view, i, l ->
             return@setOnItemLongClickListener true
         }
+        binding?.fab?.setOnClickListener {
+            studentList.add(Student(4, "Velma", "Python"))
+            baseAdapterClass.notifyDataSetChanged()
         }
     }
+}
 

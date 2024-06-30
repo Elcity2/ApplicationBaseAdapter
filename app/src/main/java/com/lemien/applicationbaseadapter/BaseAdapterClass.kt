@@ -6,9 +6,9 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 
-class BaseAdapterClass(var array : ArrayList<String>) : BaseAdapter() {
+class BaseAdapterClass(var list: ArrayList<Student>) : BaseAdapter() {
     override fun getCount(): Int {
-        return array.size
+        return list.size
     }
 
     override fun getItem(p0: Int): Any {
@@ -22,7 +22,12 @@ class BaseAdapterClass(var array : ArrayList<String>) : BaseAdapter() {
     override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
         val view = LayoutInflater.from(p2?.context).inflate(R.layout.item_base_adapter,p2, false)
         val tvName = view.findViewById<TextView>(R.id.tvName)
-        tvName.setText(array[p0])
+        tvName.setText(list[p0].name)
+        val tv = view.findViewById<TextView>(R.id.tv)
+        tv.setText(list[p0].subject)
+        val tvRollNo = view.findViewById<TextView>(R.id.tvrollno)
+        tvRollNo.setText(list[p0].rollNo.toString())
        return view
-    }
+
+}
 }
