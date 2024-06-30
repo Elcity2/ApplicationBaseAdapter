@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Application Base Adapter</string>
+    <string name="enter_a_color">color</string>
+    <string name="Enter_the_name">Enter the name</string>
+</resources>
